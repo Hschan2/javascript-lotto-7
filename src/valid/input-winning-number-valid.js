@@ -1,13 +1,13 @@
 import { ERROR_MESSAGES } from "../constant/message";
 import OPTIONS from "../constant/option";
 
-const isNotNumber = (numbers) => {
+export const isNotNumber = (numbers) => {
     numbers.forEach(number => {
         if (isNaN(number.toString())) throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidNumber}`);
     })
 }
 
-const isOnlyNumber = (numbers) => {
+export const isOnlyNumber = (numbers) => {
     const numericRegex = /^[0-9]+$/;
     for (const number of numbers) {
         if (!numericRegex.test(number)) {
@@ -16,7 +16,7 @@ const isOnlyNumber = (numbers) => {
     }
 }
 
-const isFromOneToFortyFive = (numbers) => {
+export const isFromOneToFortyFive = (numbers) => {
     for (const number of numbers) {
         if (Number(number) > OPTIONS.maxRandomNumber || Number(number) < OPTIONS.minRandomNumber) {
             throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidBetweenOneAndFortyFive}`);
@@ -24,7 +24,7 @@ const isFromOneToFortyFive = (numbers) => {
     }
 }
 
-const isThereOverlapNumber = (numbers) => {
+export const isThereOverlapNumber = (numbers) => {
     if (numbers.length !== new Set(numbers).size) throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidNotOverlap}`);
 }
 

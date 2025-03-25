@@ -2,11 +2,9 @@ import { ERROR_MESSAGES } from "../constant/message";
 import OPTIONS from "../constant/option";
 
 const isNotNumber = (numbers) => {
-    for (const number of numbers) {
-        if (isNaN(number.toString())) {
-            throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidNumber}`);
-        }
-    }
+    numbers.forEach(number => {
+        if (isNaN(number.toString())) throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidNumber}`);
+    })
 }
 
 const isOnlyNumber = (numbers) => {
@@ -27,9 +25,7 @@ const isFromOneToFortyFive = (numbers) => {
 }
 
 const isThereOverlapNumber = (numbers) => {
-    if (numbers.length !== new Set(numbers).size) {
-        throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidNotOverlap}`);
-    }
+    if (numbers.length !== new Set(numbers).size) throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidNotOverlap}`);
 }
 
 const inputWinningNumberAllCheck = (numbers) => {

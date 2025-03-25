@@ -1,18 +1,5 @@
-export const includedLottoNumbers = (inputNumber, lottoArray) => {
-    let passLottoCount = 0;
-    const userNumber = inputNumber.split(',').map((num) => Number(num));
-    lottoArray.forEach((number) => {
-        if (userNumber.includes(number)) passLottoCount += 1;
-    })
+export const countMatchingNumbers = (inputNumbers, lottoNumbers) => {
+    return inputNumbers.split(',').map(Number).filter(num => lottoNumbers.includes(num)).length;
+};
 
-    return passLottoCount;
-}
-
-export const includedBonusNumber = (lottoArray, bonusNumber) => {
-    let haveBonusNumber = false;
-    lottoArray.forEach((number) => {
-        if (number === bonusNumber) haveBonusNumber = true;
-    })
-
-    return haveBonusNumber;
-}
+export const hasBonusNumber = (lottoArray, bonusNumber) => lottoArray.includes(bonusNumber);

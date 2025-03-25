@@ -1,34 +1,34 @@
 import { LOTTO_RESULT_CHECK } from "../constant/winning";
-import { includedBonusNumber, includedLottoNumbers } from "./check-lotto-number";
+import { hasBonusNumber, countMatchingNumbers } from "./check-lotto-number";
 import printLottoResult from "./print-result";
 
 const playLottoGame = (inputNumber, lottoArray, bonusNumber, userBuyMoney) => {
-    const checkLottoResult = LOTTO_RESULT_CHECK;
+    const checkLottoResult = { ...LOTTO_RESULT_CHECK };
 
     lottoArray.forEach((numbers) => {
-        const lottoCount = includedLottoNumbers(inputNumber, numbers);
-        const getBonusNumber = includedBonusNumber(numbers, bonusNumber);
+        const lottoCount = countMatchingNumbers(inputNumber, numbers);
+        const getBonusNumber = hasBonusNumber(numbers, bonusNumber);
 
-        compareLottoCount(checkLottoResult, lottoCount, getBonusNumber);
+        updateLottoResult(checkLottoResult, lottoCount, getBonusNumber);
     });
 
     printLottoResult(checkLottoResult, userBuyMoney);
 }
 
-const compareLottoCount = (checkLottoResult, lottoCount, bonusNumber) => {
+const updateLottoResult = (checkLottoResult, lottoCount, bonusNumber) => {
     switch (lottoCount) {
         case 3:
-            checkLottoResult.three.count += 1;
+            checkLottoResult.three.count++;
             break;
         case 4:
-            checkLottoResult.four.count += 1;
+            checkLottoResult.four.count++;
             break;
         case 5:
-            checkLottoResult.five.count += 1;
-            if (bonusNumber) checkLottoResult.fiveBonus.count += 1;
+            checkLottoResult.five.count++;
+            if (bonusNumber) checkLottoResult.fiveBonus.count++;
             break;
         case 6:
-            checkLottoResult.six.count += 1;
+            checkLottoResult.six.count++;
             break;
     }
 }

@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES } from "../constant/message";
+import OPTIONS from "../constant/option";
 
 const isSingleDigit = (number) => {
     if (number.length !== 1) {
@@ -13,14 +14,13 @@ const isNotNumber = (number) => {
 }
 
 const isOnlyNumber = (number) => {
-    const numericRegex = /^[0-9]+$/;
-    if (!numericRegex.test(number)) {
+    if (!/^[0-9]+$/.test(number)) {
         throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidOnlyNumber}`);
     }
 }
 
 const isFromOneToFortyFive = (number) => {
-    if (Number(number) > 45 || Number(number) < 1) {
+    if (Number(number) > OPTIONS.maxRandomNumber || Number(number) < OPTIONS.minRandomNumber) {
         throw new Error(`${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidBetweenOneAndFortyFive}`);
     }
 }
